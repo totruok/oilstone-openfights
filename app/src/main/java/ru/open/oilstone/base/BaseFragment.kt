@@ -1,4 +1,4 @@
-package ru.open.oilstone.views.base
+package ru.open.oilstone.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

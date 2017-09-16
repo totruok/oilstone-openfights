@@ -2,7 +2,7 @@ package ru.open.oilstone.di
 
 import android.app.Application
 import dagger.Component
-import ru.open.oilstone.views.CardFragment
+import ru.open.oilstone.CardFragment
 import javax.inject.Singleton
 
 @Singleton

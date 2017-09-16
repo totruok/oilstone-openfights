@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Oilstone</string>
     <string name="action_settings">Settings</string>
+    <string name="action_deposit">Пополнить</string>
+    <string name="action_purchase">Оплатить</string>
+    <string name="action_subscriptions">Подписки</string>
 </resources>

@@ -1,4 +1,4 @@
-package ru.open.oilstone.views
+package ru.open.oilstone
 
 interface MainRouter {
     fun openCard()

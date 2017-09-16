@@ -33,7 +33,7 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
 
     override fun getBalance(cardId: Int): Single<Balance> {
         val body = mapOf("CardId" to cardId)
-        return openApi.balance(body).map { it.cardBalance!![0] }
+        return openApi.balance(body).map { it.cardBalance[0] }
     }
 
     override fun getTransactions(cardId: Int): Single<List<Transaction>> {
