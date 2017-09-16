@@ -1,8 +1,10 @@
 package ru.open.oilstone.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class CardTransaction(
-	val transactionCur: String,
-	val transactionPlace: String,
-	val transactionDate: String,
-	val transactionSum: Int
+        @SerializedName("TransactionCur") val transactionCur: String,
+        @SerializedName("TransactionPlace") val transactionPlace: String,
+        @SerializedName("TransactionDate") val transactionDate: String,
+        @SerializedName("TransactionSum") val transactionSum: Int
 )

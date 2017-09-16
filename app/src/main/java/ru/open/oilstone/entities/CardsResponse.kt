@@ -1,7 +1,9 @@
 package ru.open.oilstone.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class CardsResponse(
-    val errorCode: Int = 0,
-    val errorDescription: String = "",
-	val cards: List<Cards>
+        @SerializedName("ErrorCode") val errorCode: Int = 0,
+        @SerializedName("ErrorDescription") val errorDescription: String = "",
+        @SerializedName("Card") val cards: List<Card>
 )

@@ -1,6 +1,8 @@
 package ru.open.oilstone.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class CardBalance(
-        val cur: String?,
-        val value: Int?
+        @SerializedName("Cur") val cur: String?,
+        @SerializedName("Value") val value: Int?
 )
