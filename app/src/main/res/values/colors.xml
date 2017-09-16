@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="open_b1">#1A1B1D</color>
+    <color name="open_b2">#9DA3B1</color>
+    <color name="open_b3">#1EC659</color>
+    <color name="open_b4">#1FBBE3</color>
+    <color name="open_b5">#97A4E8</color>
+    <color name="open_b6">#FD5E62</color>
+    <color name="open_b7">#EFF0F2</color>
+    <color name="open_b8">#CDD1DA</color>
+    <color name="open_b9">#E8E8E8</color>
+</resources>
