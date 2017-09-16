@@ -14,4 +14,6 @@ interface OpenRepository {
     fun getSubscriptons(): Single<List<Subscription>>
 
     fun getSubscriptonDetail(): Single<SubscriptionDetail>
+
+    fun getSubscriptonSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse>
 }

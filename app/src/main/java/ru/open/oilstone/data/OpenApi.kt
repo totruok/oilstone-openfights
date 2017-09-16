@@ -5,20 +5,27 @@ import retrofit2.http.Body
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
-import ru.open.oilstone.entities.BalanceResponse
-import ru.open.oilstone.entities.Card
-import ru.open.oilstone.entities.CardsResponse
-import ru.open.oilstone.entities.TransactionResponse
+import ru.open.oilstone.entities.*
 
 interface OpenApi {
 
     @GET("/MyCards/1.0.0/MyCardsInfo/cardlist")
-    fun cardList(): Single<CardsResponse>
+    fun cards(): Single<CardsResponse>
 
     @GET("/MyCards/1.0.0/MyCardsInfo/balance")
-    fun cardBalance(@Body card: Card): Single<BalanceResponse>
+    fun balance(@Body card: Card): Single<BalanceResponse>
 
     @FormUrlEncoded
     @POST("/MyCards/1.0.0/MyCardsInfo/history")
-    fun cardHistory(@Body card: Card): Single<TransactionResponse>
+    fun history(@Body card: Card): Single<TransactionResponse>
+
+    @GET("/MyCards/1.0.0/MySubscription/list")
+    fun subscriptions(): Single<SubscriptionsResponse>
+
+    @GET("/MyCards/1.0.0/MySubscription/details")
+    fun subscriptionDetail(): Single<SubscriptionDetailResponse>
+
+    @FormUrlEncoded
+    @POST("/MyCards/1.0.0/MySubscription/set")
+    fun subscriptionSetSettings(): Single<SubscriptionSettingsResponse>
 }
