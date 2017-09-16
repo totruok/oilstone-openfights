@@ -1,4 +1,4 @@
-package ru.open.oilstone
+package ru.open.oilstone.views
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.open.oilstone.R
 
 class MainActivity : AppCompatActivity() {
 
