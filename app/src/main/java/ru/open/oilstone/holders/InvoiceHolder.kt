@@ -1,4 +1,4 @@
-package ru.open.oilstone.models
+package ru.open.oilstone.holders
 
 import android.view.View
 import android.widget.ImageView
@@ -7,7 +7,7 @@ import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import ru.open.oilstone.R
 
-abstract class InvoiceModel: EpoxyModelWithHolder<InvoiceModel.InvoiceHolder>() {
+abstract class InvoiceHolder : EpoxyModelWithHolder<InvoiceHolder.InvoiceHolder>() {
 
     class InvoiceHolder: EpoxyHolder() {
         lateinit var avatar: ImageView

@@ -5,10 +5,10 @@ import retrofit2.http.Body
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import ru.open.oilstone.entities.BalanceResponse
 import ru.open.oilstone.entities.Card
-import ru.open.oilstone.entities.CardBalanceResponse
-import ru.open.oilstone.entities.CardTransactionResponse
 import ru.open.oilstone.entities.CardsResponse
+import ru.open.oilstone.entities.TransactionResponse
 
 interface OpenApi {
 
@@ -16,9 +16,9 @@ interface OpenApi {
     fun cardList(): Single<CardsResponse>
 
     @GET("/MyCards/1.0.0/MyCardsInfo/balance")
-    fun cardBalance(@Body card: Card): Single<CardBalanceResponse>
+    fun cardBalance(@Body card: Card): Single<BalanceResponse>
 
     @FormUrlEncoded
     @POST("/MyCards/1.0.0/MyCardsInfo/history")
-    fun cardHistory(@Body card: Card): Single<CardTransactionResponse>
+    fun cardHistory(@Body card: Card): Single<TransactionResponse>
 }
