@@ -2,7 +2,9 @@ package ru.open.oilstone.di
 
 import android.content.Context
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -16,18 +18,27 @@ import java.io.File
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+class NetworkModule() {
 
     private val MAX_CACHE_SIZE = 1024 * 1024 * 10
 
     @Provides
     @Singleton
-    fun provideGson(): Gson = Gson()
+    fun provideGson(): Gson {
+        val builder = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+        return builder.create()
+    }
 
     @Provides
     @Singleton
-    fun provideOpenHttpClient(context: Context): OkHttpClient {
-        val cache = Cache(File(context.cacheDir, "http"), MAX_CACHE_SIZE.toLong())
+    fun provideHttpCache(context: Context): Cache {
+        val cacheSize = 10 * 1024 * 1024L
+        return Cache(File(context.cacheDir, "http"), cacheSize)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOpenHttpClient(cache: Cache): OkHttpClient {
 
         var builder: OkHttpClient.Builder = OkHttpClient.Builder()
                 .cache(cache)

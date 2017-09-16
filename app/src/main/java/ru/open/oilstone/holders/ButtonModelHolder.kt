@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import ru.open.oilstone.R
 
-abstract class ButtonHolder : EpoxyModelWithHolder<ButtonHolder.ButtonHolder>() {
+abstract class ButtonModelHolder : EpoxyModelWithHolder<ButtonModelHolder.ButtonHolder>() {
 
     class ButtonHolder: EpoxyHolder() {
         lateinit var text: TextView

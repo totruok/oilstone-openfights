@@ -5,15 +5,15 @@ import ru.open.oilstone.entities.*
 
 interface OpenRepository {
 
-    fun getCards(): Single<List<Card>>
+    fun getCards(): Single<List<CardEntity>>
 
-    fun getBalance(): Single<Balance>
+    fun getBalance(): Single<BalanceEntity>
 
-    fun getTransacrtions(): Single<List<Transaction>>
+    fun getTransactions(): Single<List<TransactionEntity>>
 
-    fun getSubscriptons(): Single<List<Subscription>>
+    fun getSubscriptions(): Single<List<SubscriptionEntity>>
 
-    fun getSubscriptonDetail(): Single<SubscriptionDetail>
+    fun getSubscriptionDetail(): Single<SubscriptionDetailEntity>
 
-    fun getSubscriptonSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse>
+    fun getSubscriptionSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse>
 }

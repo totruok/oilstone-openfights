@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import ru.open.oilstone.R
 
-abstract class HeaderHolder : EpoxyModelWithHolder<HeaderHolder.InvoiceHolder>() {
+abstract class HeaderModelHolder : EpoxyModelWithHolder<HeaderModelHolder.InvoiceHolder>() {
 
     class InvoiceHolder: EpoxyHolder() {
         lateinit var title: TextView

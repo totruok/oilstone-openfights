@@ -7,7 +7,7 @@ import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import ru.open.oilstone.R
 
-abstract class InvoiceHolder : EpoxyModelWithHolder<InvoiceHolder.InvoiceHolder>() {
+abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.InvoiceHolder>() {
 
     class InvoiceHolder: EpoxyHolder() {
         lateinit var avatar: ImageView

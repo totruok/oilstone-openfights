@@ -2,7 +2,7 @@ package ru.open.oilstone.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class Subscription(
+data class SubscriptionEntity(
         @SerializedName("Id") val id: String,
         @SerializedName("Logo") val logo: String,
         @SerializedName("Name") val name: String

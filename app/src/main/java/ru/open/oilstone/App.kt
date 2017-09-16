@@ -2,7 +2,7 @@ package ru.open.oilstone
 
 import android.app.Application
 import com.facebook.stetho.Stetho
-import ru.open.oilstone.di.*
+import ru.open.oilstone.di.AppComponent
 
 class App : Application() {
     companion object {
@@ -22,11 +22,7 @@ class App : Application() {
     }
 
     private fun initComponent() {
-        appComponent = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .networkModule(NetworkModule())
-                .apiModule(ApiModule())
-                .build()
+        appComponent = AppComponent.create(this)
     }
 
 }

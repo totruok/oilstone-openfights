@@ -35,6 +35,16 @@ android {
     }
 }
 
+project.android.buildTypes.all { buildType ->
+    buildType.javaCompileOptions.annotationProcessorOptions.arguments =
+            [
+                    validateEpoxyModelUsage     : String.valueOf(buildType.name == 'debug'),
+                    requireHashCodeInEpoxyModels: "true",
+                    requireAbstractEpoxyModels  : "true",
+                    implicitlyAddAutoModels     : "true"
+            ]
+}
+
 kapt {
     correctErrorTypes = true
 }
@@ -46,6 +56,7 @@ def stethoVersion = '1.5.0'
 def okHttpVersion = '3.8.1'
 def rxJavaVersion = '2.1.0'
 def rxAndroidVersion = '2.0.1'
+def archVersion = '1.0.0-alpha9-1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -56,6 +67,7 @@ dependencies {
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.airbnb.android:epoxy:2.5.0'
+    kapt 'com.airbnb.android:epoxy-processor:2.5.0'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
@@ -72,7 +84,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
-    kapt 'com.airbnb.android:epoxy-processor:2.5.0'
+    implementation "android.arch.lifecycle:runtime:$archVersion"
+    implementation "android.arch.lifecycle:extensions:$archVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
     implementation 'com.android.support:support-annotations:26.1.0'
     implementation'com.jakewharton:butterknife:8.8.1'
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
