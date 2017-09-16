@@ -1,11 +1,10 @@
-package ru.open.oilstone.views
+package ru.open.oilstone
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.open.oilstone.R
-import ru.open.oilstone.views.base.BaseFragment
+import ru.open.oilstone.base.BaseFragment
 
 class SubscriptionDetailFragment : BaseFragment() {
 

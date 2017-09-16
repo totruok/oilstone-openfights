@@ -1,9 +1,7 @@
-package ru.open.oilstone.views
+package ru.open.oilstone
 
 import android.os.Bundle
-import ru.open.oilstone.R
-import ru.open.oilstone.views.base.BaseActivity
-
+import ru.open.oilstone.base.BaseActivity
 class MainActivity : BaseActivity(), MainRouter {
 
     override fun onCreate(savedInstanceState: Bundle?) {

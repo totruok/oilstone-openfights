@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import ru.open.oilstone.CardFragment
 import ru.open.oilstone.data.OpenRepository
-import ru.open.oilstone.views.CardFragment
 
 
 class CardBlockViewModel constructor(private val repository: OpenRepository) : ViewModel() {

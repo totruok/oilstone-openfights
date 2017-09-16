@@ -33,4 +33,8 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="Open.Text.A6">
+        <item name="android:textSize">64sp</item>
+    </style>
+
 </resources>
