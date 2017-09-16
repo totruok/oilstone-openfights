@@ -1,4 +1,4 @@
-package ru.open.oilstone.domain.entities
+package ru.open.oilstone.entities
 
 data class CardTransaction(
 	val transactionCur: String,
