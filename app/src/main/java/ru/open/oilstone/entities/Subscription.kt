@@ -12,7 +12,7 @@ data class Subscription(
         @SerializedName("description") val description: String = "",
         @SerializedName("logo") val logo: String?,
         @SerializedName("payment_days") val paymentDays: List<Int> = emptyList(),
-        @SerializedName("recommendations") val recommendations: List<Recommendation>? = emptyList(),
+        @SerializedName("recomendations") val recommendations: List<Recommendation>? = emptyList(),
         @SerializedName("stars") val stars: Int?,
         @SerializedName("active") var active: Boolean,
         @SerializedName("total_payed") val totalPayed: Double
