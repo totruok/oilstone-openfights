@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class TransactionResponse(
         @SerializedName("ErrorCode") val errorCode: Int = 0,
         @SerializedName("ErrorDescription") val errorDescription: String = "",
-        @SerializedName("CardId") val cardId: Int,
+        @SerializedName("CardId") val cardId: Long,
         @SerializedName("CardTransactionsList") val cardTransactionsList: List<Transaction>
 )

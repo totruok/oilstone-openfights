@@ -12,11 +12,11 @@ interface OpenApi {
     @GET("/MyCards/1.0.0/MyCardsInfo/cardlist")
     fun cards(): Single<CardsResponse>
 
-    @POST("/MyCards/1.0.0/MyCardsInfo/balance")
-    fun balance(@Body body: Map<String, Int>): Single<BalanceResponse>
+    @POST("/MyCards/1.0.0/MyCards/balance")
+    fun balance(@Body body: Map<String, Long>): Single<BalanceResponse>
 
     @POST("/MyCards/1.0.0/MyCardsInfo/history")
-    fun history(@Body body: Map<String, Int>): Single<TransactionResponse>
+    fun history(@Body body: Map<String, Long>): Single<TransactionResponse>
 
     @GET("/MyCards/1.0.0/MySubscription/list")
     fun subscriptions(): Single<SubscriptionsResponse>

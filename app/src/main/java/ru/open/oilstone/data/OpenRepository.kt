@@ -11,9 +11,9 @@ interface OpenRepository {
 
     fun getCard(): Single<Card>
 
-    fun getBalance(cardId: Int): Single<Balance>
+    fun getBalance(cardId: Long): Single<Balance>
 
-    fun getTransactions(cardId: Int): Single<List<Transaction>>
+    fun getTransactions(cardId: Long): Single<List<Transaction>>
 
     fun getSubscriptions(): LiveData<List<Subscription>>
 

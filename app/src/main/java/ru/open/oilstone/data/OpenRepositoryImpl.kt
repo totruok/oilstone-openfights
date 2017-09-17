@@ -28,15 +28,15 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
     };
 
     override fun getCard(): Single<Card> {
-        return Single.just(Card(42, "Семейная карта", "visa", "debit"))
+        return Single.just(Card(7993583440908627, "Семейная карта", "visa", "debit"))
     }
 
-    override fun getBalance(cardId: Int): Single<Balance> {
+    override fun getBalance(cardId: Long): Single<Balance> {
         val body = mapOf("CardId" to cardId)
         return openApi.balance(body).map { it.cardBalance[0] }
     }
 
-    override fun getTransactions(cardId: Int): Single<List<Transaction>> {
+    override fun getTransactions(cardId: Long): Single<List<Transaction>> {
         val body = mapOf("CardId" to cardId)
         return openApi.history(body).map { it.cardTransactionsList }
     }
