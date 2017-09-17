@@ -54,6 +54,6 @@ class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
     }
 
     override fun onSubscriptionsClicked() {
-
+        (activity as MainRouter).openSubscriptions()
     }
 }

@@ -2,6 +2,7 @@ package ru.open.oilstone.base
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import ru.open.oilstone.R
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -34,6 +35,14 @@ abstract class BaseActivity : AppCompatActivity() {
                 actionBar.title = fragment.getTitle()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            onBackPressed()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     companion object {

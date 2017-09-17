@@ -17,7 +17,7 @@ class MainActivity : BaseActivity(), MainRouter {
     }
 
     override fun openSubscriptions() {
-        replace(SubscriptionsFragment())
+        addBackStack(SubscriptionsFragment(), "subscriptions")
     }
 
     override fun openSubscriptionDetail(id: String) {
