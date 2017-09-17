@@ -5,9 +5,9 @@ import com.airbnb.epoxy.TypedEpoxyController
 import ru.open.oilstone.R
 import ru.open.oilstone.entities.MoneyUtils
 import ru.open.oilstone.holders.buttonModelHolder
+import ru.open.oilstone.holders.cardModelHolder
 import ru.open.oilstone.holders.invoiceModelHolder
 import ru.open.oilstone.models.CardBlock
-import ru.open.oilstone.views.cardView
 
 class CardController(private val callbacks: CardController.AdapterCallbacks, private val recyclerViewPool: RecycledViewPool) : TypedEpoxyController<CardBlock>() {
     interface AdapterCallbacks {
@@ -17,7 +17,7 @@ class CardController(private val callbacks: CardController.AdapterCallbacks, pri
     }
 
     override fun buildModels(data: CardBlock) {
-        cardView {
+        cardModelHolder {
             id(data.card.cardId)
             name(data.card.getCardTitle())
             balance(MoneyUtils.moneyFormat(data.balance.cur, data.balance.value))
