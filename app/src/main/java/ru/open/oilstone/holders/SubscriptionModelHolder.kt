@@ -22,6 +22,12 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
     var summary: String = ""
     @EpoxyAttribute
     var name: String = ""
+    @EpoxyAttribute
+    var totalSummary: String = ""
+    @EpoxyAttribute
+    var rating: String = ""
+    @EpoxyAttribute
+    var detail: Boolean = false
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var clickListener: View.OnClickListener? = null
     @EpoxyAttribute
@@ -48,6 +54,15 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
             holder.status.visibility = View.GONE
             holder.status.text = ""
         }
+        if (detail) {
+            holder.rating.visibility = View.VISIBLE
+            holder.rating.text = rating
+            holder.total.visibility = View.VISIBLE
+            holder.total.text = totalSummary
+        } else {
+            holder.rating.visibility = View.GONE
+            holder.total.visibility = View.GONE
+        }
     }
 
     override fun unbind(holder: SubscriptionHolder) {
@@ -63,6 +78,8 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
         lateinit var description: TextView
         lateinit var summary: TextView
         lateinit var status: TextView
+        lateinit var total: TextView
+        lateinit var rating: TextView
 
         override fun bindView(itemView: View) {
             this.itemView = itemView
@@ -72,6 +89,8 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
             description = itemView.findViewById(R.id.description)
             summary = itemView.findViewById(R.id.summary)
             status = itemView.findViewById(R.id.status)
+            total = itemView.findViewById(R.id.summaryAll)
+            rating = itemView.findViewById(R.id.rating)
         }
     }
 }

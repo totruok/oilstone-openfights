@@ -2,6 +2,7 @@ package ru.open.oilstone
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import editor.video.motion.fast.slow.core.annotations.Title
 import kotlinx.android.synthetic.main.layout_recycler.*
@@ -13,6 +14,8 @@ import javax.inject.Inject
 
 @Title(R.string.title_family_card)
 class CardFragment : RecyclerFragment(), CardController.AdapterCallbacks {
+
+    private val TAG = this.javaClass.simpleName!!
 
     @Inject
     lateinit var viewModelFactory: OpenViewModelFactory
@@ -30,15 +33,20 @@ class CardFragment : RecyclerFragment(), CardController.AdapterCallbacks {
     }
 
 
-    override fun onDepositClicked() {
+    override fun onDepositClicked(cardId: Long) {
 
     }
 
-    override fun onPurchasedClicked() {
+    override fun onPurchasedClicked(cardId: Long) {
 
     }
 
-    override fun onSubscriptionsClicked() {
-        (activity as MainRouter).openSubscriptions()
+    override fun onSubscriptionClicked(cardId: Long, subscriptionId: Long) {
+        (activity as MainRouter).openSubscriptionDetail(cardId, subscriptionId)
+    }
+
+    override fun onSubscriptionsClicked(cardId: Long) {
+        Log.d(TAG, "onSubscriptionsClicked")
+        (activity as MainRouter).openSubscriptions(cardId)
     }
 }

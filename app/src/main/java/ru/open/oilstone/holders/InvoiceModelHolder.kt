@@ -31,6 +31,8 @@ abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.Invo
     var otherTextColor: Int = 0
     @EpoxyAttribute
     var canceled: Boolean = false
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var clickListener: View.OnClickListener? = null
 
     override fun bind(holder: InvoiceHolder) {
         super.bind(holder)
@@ -58,6 +60,12 @@ abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.Invo
             holder.status.text = ""
         }
         holder.status.setTextColor(ContextCompat.getColor(holder.status.context, timeColor))
+        holder.itemView.setOnClickListener(clickListener)
+    }
+
+    override fun unbind(holder: InvoiceHolder) {
+        super.unbind(holder)
+        holder.itemView.setOnClickListener(null)
     }
 
     class InvoiceHolder: EpoxyHolder() {

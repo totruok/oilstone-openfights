@@ -2,6 +2,7 @@ package ru.open.oilstone.data
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,6 +10,7 @@ import ru.open.oilstone.entities.*
 import ru.open.oilstone.models.CardBlock
 
 class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
+
     override fun getCardBlock(): LiveData<CardBlock> {
         val data = MutableLiveData<CardBlock>()
 
@@ -27,9 +29,12 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
         return data
     }
 
-    override fun getSubscriptions(): LiveData<List<Subscription>> {
+
+    override fun getSubscriptions(cardId: Long): LiveData<List<Subscription>> {
         val data = MutableLiveData<List<Subscription>>()
-        val body = mapOf("CardId" to CARD_ID)
+        val body = mapOf("CardId" to cardId)
+
+        Log.d("API", "startLoading")
         openApi.subscriptions(body).map {
             it.subscriptions
         }
@@ -44,7 +49,7 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
     }
 
     override fun getCard(): Single<Card> {
-        return Single.just(Card(CARD_ID, "Семейная карта", "visa", "debit"))
+        return openApi.cards().map { it.cards[0] }
     }
 
     override fun getBalance(cardId: Long): Single<Balance> {
@@ -57,16 +62,33 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
         return openApi.history(body).map { it.cardTransactionsList }
     }
 
+    override fun getSubscription(cardId: Long, subscriptionId: Long): LiveData<Subscription> {
+        val data = MutableLiveData<Subscription>()
+        val body = mapOf("CardId" to cardId.toString(), "subs_id" to subscriptionId.toString())
 
-    override fun getSubscriptionDetail(): Single<SubscriptionDetail> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        openApi.subscription(body).map { it.subscription!! }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data.value = it
+                }, {
+                    it.printStackTrace()
+                })
+        return data
     }
 
-    override fun getSubscriptionSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun updateSubscription(cardId: Long, subscriptionId: Long, activeStatus: Boolean, maxCost: Double, comment: Comment?): LiveData<Subscription> {
+        val data = MutableLiveData<Subscription>()
+        val body = mapOf("CardId" to cardId.toString(), "subs_id" to subscriptionId.toString())
 
-    companion object {
-        val CARD_ID: Long = 9731875055002762
+        openApi.subscriptionSetSettings(body).map { it.subscription!! }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data.value = it
+                }, {
+                    it.printStackTrace()
+                })
+        return data
     }
 }

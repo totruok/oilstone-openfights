@@ -11,5 +11,8 @@
     <item name="deposit" type="id" />
     <item name="purchase" type="id" />
     <item name="summary" type="id" />
+    <item name="summaryAll" type="id" />
+    <item name="rating" type="id" />
     <item name="text" type="id" />
+    <item name="edit" type="id" />
 </resources>

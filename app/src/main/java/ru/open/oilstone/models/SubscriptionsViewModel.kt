@@ -8,10 +8,19 @@ import android.support.v4.app.Fragment
 import ru.open.oilstone.data.OpenRepository
 import ru.open.oilstone.entities.Subscription
 
-class SubscriptionsViewModel constructor(repository: OpenRepository) : ViewModel() {
+class SubscriptionsViewModel constructor(val repository: OpenRepository) : ViewModel() {
 
-    var subscriptions: LiveData<List<Subscription>> = repository.getSubscriptions()
-        private set
+    var cardId: Long? = null
+
+    fun setId(cardId: Long) {
+        if (subscriptions != null && this.cardId == cardId) {
+            return
+        }
+        this.cardId = cardId
+        subscriptions = repository.getSubscriptions(cardId)
+    }
+
+    var subscriptions: LiveData<List<Subscription>>? = null
 
     companion object {
         fun create(fragment: Fragment, factory: ViewModelProvider.Factory): SubscriptionsViewModel {

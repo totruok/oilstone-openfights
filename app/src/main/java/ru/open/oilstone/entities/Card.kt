@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Card(
         @SerializedName("CardId") val cardId: Long,
         @SerializedName("CardName") val cardName: String,
-        private @SerializedName("CardPaymentSystem") val cardPaymentSystem: String,
+        private @SerializedName("CardPaymentSystem") val cardPaymentSystem: String = "",
         private @SerializedName("CardType") val cardType: String
 ) {
     fun getCardTitle(): String = "${getType()} $cardId"
@@ -21,7 +21,7 @@ data class Card(
             "Mir"
         }
         else -> {
-            ""
+            cardPaymentSystem
         }
     }
 

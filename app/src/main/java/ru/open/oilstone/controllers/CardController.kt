@@ -10,9 +10,10 @@ import ru.open.oilstone.models.CardBlock
 
 class CardController(private val callbacks: CardController.AdapterCallbacks) : TypedEpoxyController<CardBlock>() {
     interface AdapterCallbacks {
-        fun onDepositClicked()
-        fun onPurchasedClicked()
-        fun onSubscriptionsClicked()
+        fun onDepositClicked(cardId: Long)
+        fun onPurchasedClicked(cardId: Long)
+        fun onSubscriptionsClicked(cardId: Long)
+        fun onSubscriptionClicked(cardId: Long, subscriptionId: Long)
     }
 
     override fun buildModels(data: CardBlock) {
@@ -25,7 +26,7 @@ class CardController(private val callbacks: CardController.AdapterCallbacks) : T
             id(1)
             textRes(R.string.action_subscriptions)
             clickListener { _, _, _, _ ->
-                callbacks.onSubscriptionsClicked()
+                callbacks.onSubscriptionsClicked(data.card.cardId)
             }
         }
         for (transaction in data.transactions) {
@@ -40,6 +41,11 @@ class CardController(private val callbacks: CardController.AdapterCallbacks) : T
                 canceled(transaction.isCanceled())
                 summary(MoneyUtils.moneyFormat(transaction.transactionCur, transaction.transactionSum))
                 bgResColor(transaction.colorTransaction())
+                clickListener { _, _, _, _ ->
+                    if (transaction.transactionSubscrition != null) {
+                        callbacks.onSubscriptionClicked(data.card.cardId, transaction.transactionSubscrition.id)
+                    }
+                }
             }
         }
     }

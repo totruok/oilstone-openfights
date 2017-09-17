@@ -1,6 +1,8 @@
 package ru.open.oilstone.entities
 
+import com.google.gson.annotations.SerializedName
+
 data class Comment(
-        val text: String = "",
-        val user: String = ""
+        @SerializedName("text") val text: String = "",
+        @SerializedName("user") val user: String = ""
 )

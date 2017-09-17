@@ -16,10 +16,11 @@ class MainActivity : BaseActivity(), MainRouter {
         replace(CardFragment())
     }
 
-    override fun openSubscriptions() {
-        addBackStack(SubscriptionsFragment(), "subscriptions")
+    override fun openSubscriptions(cardId: Long) {
+        addBackStack(SubscriptionsFragment.newInstance(cardId), "subscriptions")
     }
 
-    override fun openSubscriptionDetail(id: String) {
+    override fun openSubscriptionDetail(cardId: Long, subscriptionId: Long) {
+        addBackStack(SubscriptionDetailFragment.newInstance(cardId, subscriptionId), "subscriptions")
     }
 }

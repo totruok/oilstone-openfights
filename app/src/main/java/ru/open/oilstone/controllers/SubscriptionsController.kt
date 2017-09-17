@@ -20,15 +20,17 @@ class SubscriptionsController(private val callbacks: SubscriptionsController.Ada
                 id(i)
                 avatar(subscriptions[i].logo ?: "")
                 name(subscriptions[i].name)
-                clickListener { model, parentView, clickedView, position ->
+                clickListener { _, _, _, _ ->
                     val subscription = subscriptions[i]
                     callbacks.onSubscriptionClicked(subscription)
                 }
                 canceled(!subscriptions[i].active)
                 summary(context.getString(R.string.summary_n, MoneyUtils.moneyFormat("RUB", subscriptions[i].firstPayment)))
                 description(subscriptions[i].description)
+                detail(false)
             }
         }
+
 //        subscriptionModelHolder {
 //            id(su)
 //        }

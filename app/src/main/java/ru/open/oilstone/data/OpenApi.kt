@@ -9,7 +9,7 @@ import ru.open.oilstone.entities.*
 
 interface OpenApi {
 
-    @GET("/MyCards/1.0.0/MyCardsInfo/cardlist")
+    @GET("/MyCards/1.0.0/list")
     fun cards(): Single<CardsResponse>
 
     @POST("/MyCards/1.0.0/MyCards/balance")
@@ -21,10 +21,10 @@ interface OpenApi {
     @POST("/MySubscribtions/1.0.0/list")
     fun subscriptions(@Body body: Map<String, Long>): Single<SubscriptionsResponse>
 
-    @GET("/MyCards/1.0.0/MySubscription/details")
-    fun subscriptionDetail(): Single<SubscriptionDetailResponse>
+    @POST("/MySubscribtions/1.0.0/getById")
+    fun subscription(@Body body: Map<String, String>): Single<SubscriptionResponse>
 
     @FormUrlEncoded
-    @POST("/MyCards/1.0.0/MySubscription/set")
-    fun subscriptionSetSettings(): Single<SubscriptionSettingsResponse>
+    @POST("MySubscribtions/1.0.0/getById")
+    fun subscriptionSetSettings(@Body body: Map<String, String>): Single<SubscriptionResponse>
 }
