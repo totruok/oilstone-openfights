@@ -32,10 +32,14 @@ class CardController(private val callbacks: CardController.AdapterCallbacks) : T
             invoiceModelHolder {
                 id(transaction.hashCode())
                 date(transaction.transactionDate)
+                timeColor(transaction.colorTime())
                 avatar(transaction.transactionPhotoUrl)
                 name(transaction.transactionOwner)
                 description(transaction.transactionPlace)
+                otherTextColor(transaction.colorOther())
+                canceled(transaction.isCanceled())
                 summary(MoneyUtils.moneyFormat(transaction.transactionCur, transaction.transactionSum))
+                bgResColor(transaction.colorTransaction())
             }
         }
     }

@@ -57,6 +57,13 @@
         <item name="android:textColor">@color/open_b2</item>
     </style>
 
+    <style name="Open.Text.Transaction.Status">
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">@dimen/medium</item>
+        <item name="android:fontFamily">@font/whitney_medium</item>
+        <item name="android:textColor">@color/open_b2</item>
+    </style>
+
     <style name="Open.Text.Transaction.Name">
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/whitney_medium</item>
@@ -84,6 +91,12 @@
     <style name="Open.Text.Subscription.Date">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/open_b2</item>
+    </style>
+
+    <style name="Open.Text.Subscription.Status">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/open_b2</item>
+        <item name="android:paddingBottom">@dimen/small</item>
     </style>
 
     <style name="Open.Text.Subscription.Name">
