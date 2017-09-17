@@ -77,8 +77,8 @@
 
 
     <style name="Open.Text.Subscription">
-        <item name="android:paddingTop">@dimen/small</item>
-        <item name="android:paddingBottom">@dimen/small</item>
+        <!--<item name="android:paddingTop">@dimen/small</item>-->
+        <!--<item name="android:paddingBottom">@dimen/small</item>-->
     </style>
 
     <style name="Open.Text.Subscription.Date">
@@ -87,6 +87,7 @@
     </style>
 
     <style name="Open.Text.Subscription.Name">
+        <item name="android:paddingLeft">@dimen/medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/whitney_medium</item>
         <item name="android:textColor">@color/open_b1</item>

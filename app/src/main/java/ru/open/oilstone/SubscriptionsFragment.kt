@@ -38,6 +38,7 @@ class SubscriptionsFragment : BaseFragment(), SubscriptionsController.AdapterCal
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.appComponent.inject(this)
+        controller.context = context.applicationContext
 
         recyclerView.recycledViewPool = recycledViewPool
         recyclerView.layoutManager = LinearLayoutManager(context)
