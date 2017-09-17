@@ -1,9 +1,14 @@
 package ru.open.oilstone.entities
 
-import com.google.gson.annotations.SerializedName
-
 data class Subscription(
-        @SerializedName("Id") val id: String,
-        @SerializedName("Logo") val logo: String,
-        @SerializedName("Name") val name: String
+        val firstPayment: String = "",
+        val cost: String? = null,
+        val comments: List<Comment> = emptyList(),
+        val name: String = "",
+        val description: String = "",
+        val logo: String?,
+        val paymentDays: List<Double> = emptyList(),
+        val liveTimeMonths: Int = 3,
+        val recommendations: List<Recommendation> = emptyList(),
+        val stars: Int?
 )

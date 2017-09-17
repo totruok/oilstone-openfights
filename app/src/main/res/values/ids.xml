@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="toolbar" type="id" />
     <item name="title" type="id"/>
     <item name="name" type="id" />
     <item name="balance" type="id" />
     <item name="avatar" type="id" />
     <item name="date" type="id"/>
     <item name="description" type="id"/>
+    <item name="deposit" type="id" />
+    <item name="purchase" type="id" />
     <item name="summary" type="id" />
     <item name="text" type="id" />
 </resources>

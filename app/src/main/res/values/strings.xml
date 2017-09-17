@@ -4,4 +4,6 @@
     <string name="action_deposit">Пополнить</string>
     <string name="action_purchase">Оплатить</string>
     <string name="action_subscriptions">Подписки</string>
+    <string name="title_family_card">Семейная карта</string>
+    <string name="title_subscriptions">Подписки</string>
 </resources>

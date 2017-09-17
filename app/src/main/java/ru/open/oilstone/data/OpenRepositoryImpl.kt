@@ -25,25 +25,38 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
                     it.printStackTrace()
                 })
         return data
-    };
-
-    override fun getCard(): Single<Card> {
-        return Single.just(Card(42, "Семейная карта", "visa", "debit"))
     }
 
-    override fun getBalance(cardId: Int): Single<Balance> {
+    override fun getSubscriptions(): LiveData<List<Subscription>> {
+        val data = MutableLiveData<List<Subscription>>()
+
+        openApi.subscriptions().map {
+            it.subscriptions
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data.value = it
+                }, {
+                    it.printStackTrace()
+                })
+        return data
+    }
+
+    override fun getCard(): Single<Card> {
+        return Single.just(Card(7993583440908627, "Семейная карта", "visa", "debit"))
+    }
+
+    override fun getBalance(cardId: Long): Single<Balance> {
         val body = mapOf("CardId" to cardId)
         return openApi.balance(body).map { it.cardBalance[0] }
     }
 
-    override fun getTransactions(cardId: Int): Single<List<Transaction>> {
+    override fun getTransactions(cardId: Long): Single<List<Transaction>> {
         val body = mapOf("CardId" to cardId)
         return openApi.history(body).map { it.cardTransactionsList }
     }
 
-    override fun getSubscriptions(): LiveData<List<Subscription>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun getSubscriptionDetail(): Single<SubscriptionDetail> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

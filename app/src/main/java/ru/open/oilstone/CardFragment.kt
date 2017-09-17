@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView.RecycledViewPool
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import editor.video.motion.fast.slow.core.annotations.Title
 import kotlinx.android.synthetic.main.fragment_card.*
 import ru.open.oilstone.base.BaseFragment
 import ru.open.oilstone.controllers.CardController
@@ -15,15 +16,14 @@ import ru.open.oilstone.models.OpenViewModelFactory
 import javax.inject.Inject
 
 
+@Title(R.string.title_family_card)
 class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
 
     @Inject
     lateinit var viewModelFactory: OpenViewModelFactory
 
     private val recycledViewPool = RecycledViewPool()
-    private val controller = CardController(this, recycledViewPool)
-
-    private val TAG = this.javaClass.simpleName!!
+    private val controller = CardController(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +36,7 @@ class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
 
         recyclerView.recycledViewPool = recycledViewPool
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true)
         recyclerView.adapter = controller.adapter
 
         CardBlockViewModel.create(this, viewModelFactory).card.observe(this, Observer {
@@ -44,15 +44,16 @@ class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
         })
     }
 
+
     override fun onDepositClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onPurchasedClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onSubscriptionsClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        (activity as MainRouter).openSubscriptions()
     }
 }

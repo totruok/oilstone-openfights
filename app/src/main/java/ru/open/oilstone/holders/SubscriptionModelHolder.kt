@@ -10,8 +10,8 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.squareup.picasso.Picasso
 import ru.open.oilstone.R
 
-@EpoxyModelClass(layout = R.layout.view_invoice)
-abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.InvoiceHolder>() {
+@EpoxyModelClass(layout = R.layout.view_subscription)
+abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelHolder.SubscriptionHolder>() {
     @EpoxyAttribute
     var avatar: String = ""
     @EpoxyAttribute
@@ -23,7 +23,7 @@ abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.Invo
     @EpoxyAttribute
     var name: String = ""
 
-    override fun bind(holder: InvoiceHolder) {
+    override fun bind(holder: SubscriptionHolder) {
         super.bind(holder)
 
         Picasso.with(holder.avatar.context)
@@ -37,7 +37,7 @@ abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.Invo
         holder.summary.text = summary
     }
 
-    class InvoiceHolder: EpoxyHolder() {
+    class SubscriptionHolder : EpoxyHolder() {
         lateinit var avatar: ImageView
         lateinit var name: TextView
         lateinit var date: TextView
@@ -53,4 +53,3 @@ abstract class InvoiceModelHolder : EpoxyModelWithHolder<InvoiceModelHolder.Invo
         }
     }
 }
-

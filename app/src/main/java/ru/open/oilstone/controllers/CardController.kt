@@ -1,13 +1,14 @@
 package ru.open.oilstone.controllers
 
-import android.support.v7.widget.RecyclerView.RecycledViewPool
 import com.airbnb.epoxy.TypedEpoxyController
 import ru.open.oilstone.R
+import ru.open.oilstone.entities.MoneyUtils
 import ru.open.oilstone.holders.buttonModelHolder
+import ru.open.oilstone.holders.cardModelHolder
+import ru.open.oilstone.holders.invoiceModelHolder
 import ru.open.oilstone.models.CardBlock
-import ru.open.oilstone.views.cardView
 
-class CardController(private val callbacks: CardController.AdapterCallbacks, private val recyclerViewPool: RecycledViewPool) : TypedEpoxyController<CardBlock>() {
+class CardController(private val callbacks: CardController.AdapterCallbacks) : TypedEpoxyController<CardBlock>() {
     interface AdapterCallbacks {
         fun onDepositClicked()
         fun onPurchasedClicked()
@@ -15,10 +16,10 @@ class CardController(private val callbacks: CardController.AdapterCallbacks, pri
     }
 
     override fun buildModels(data: CardBlock) {
-        cardView {
+        cardModelHolder {
             id(data.card.cardId)
             name(data.card.getCardTitle())
-            balance(data.balance.balance())
+            balance(MoneyUtils.moneyFormat(data.balance.cur, data.balance.value))
         }
         buttonModelHolder {
             id(1)
@@ -27,8 +28,16 @@ class CardController(private val callbacks: CardController.AdapterCallbacks, pri
                 callbacks.onSubscriptionsClicked()
             }
         }
-//        for (transaction in data.transactions) {
-//        }
+        for (transaction in data.transactions) {
+            invoiceModelHolder {
+                id(transaction.hashCode())
+                date(transaction.transactionDate)
+                avatar(transaction.transactionPhotoUrl)
+                name(transaction.transactionOwner)
+                description(transaction.transactionPlace)
+                summary(MoneyUtils.moneyFormat(transaction.transactionCur, transaction.transactionSum))
+            }
+        }
     }
 
 

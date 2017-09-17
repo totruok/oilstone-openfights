@@ -3,7 +3,7 @@ package ru.open.oilstone.entities
 import com.google.gson.annotations.SerializedName
 
 data class Card(
-        @SerializedName("CardId") val cardId: Int,
+        @SerializedName("CardId") val cardId: Long,
         @SerializedName("CardName") val cardName: String,
         private @SerializedName("CardPaymentSystem") val cardPaymentSystem: String,
         private @SerializedName("CardType") val cardType: String

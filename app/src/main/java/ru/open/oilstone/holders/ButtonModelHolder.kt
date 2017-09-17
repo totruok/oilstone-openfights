@@ -1,7 +1,7 @@
 package ru.open.oilstone.holders
 
 import android.view.View
-import android.widget.Button
+import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -29,14 +29,11 @@ abstract class ButtonModelHolder : EpoxyModelWithHolder<ButtonModelHolder.Button
     }
 
     class ButtonHolder: EpoxyHolder() {
-        lateinit var button: Button
+        lateinit var button: TextView
 
         override fun bindView(itemView: View) {
-            button = itemView as Button
+            button = itemView as TextView
         }
 
-
     }
-
-
 }
