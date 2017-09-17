@@ -24,6 +24,8 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
     var name: String = ""
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var clickListener: View.OnClickListener? = null
+    @EpoxyAttribute
+    var canceled: Boolean = false
 
     override fun bind(holder: SubscriptionHolder) {
         super.bind(holder)
@@ -39,6 +41,13 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
         holder.summary.text = summary
 
         holder.itemView.setOnClickListener(clickListener)
+        if (canceled) {
+            holder.status.visibility = View.VISIBLE
+            holder.status.text = holder.status.context.getString(R.string.canceled_subscription)
+        } else {
+            holder.status.visibility = View.GONE
+            holder.status.text = ""
+        }
     }
 
     override fun unbind(holder: SubscriptionHolder) {
@@ -53,6 +62,7 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
         lateinit var date: TextView
         lateinit var description: TextView
         lateinit var summary: TextView
+        lateinit var status: TextView
 
         override fun bindView(itemView: View) {
             this.itemView = itemView
@@ -61,6 +71,7 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
             date = itemView.findViewById(R.id.date)
             description = itemView.findViewById(R.id.description)
             summary = itemView.findViewById(R.id.summary)
+            status = itemView.findViewById(R.id.status)
         }
     }
 }

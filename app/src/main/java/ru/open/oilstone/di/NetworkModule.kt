@@ -15,6 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.open.oilstone.BuildConfig
 import java.io.File
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -42,6 +43,7 @@ class NetworkModule() {
 
         var builder: OkHttpClient.Builder = OkHttpClient.Builder()
                 .cache(cache)
+                .connectTimeout(40, TimeUnit.SECONDS)
                 .addInterceptor { chain ->
                     val original = chain.request()
 

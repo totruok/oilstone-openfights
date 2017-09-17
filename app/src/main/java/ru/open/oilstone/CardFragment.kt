@@ -2,14 +2,9 @@ package ru.open.oilstone
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView.RecycledViewPool
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import editor.video.motion.fast.slow.core.annotations.Title
-import kotlinx.android.synthetic.main.fragment_card.*
-import ru.open.oilstone.base.BaseFragment
+import kotlinx.android.synthetic.main.layout_recycler.*
 import ru.open.oilstone.controllers.CardController
 import ru.open.oilstone.models.CardBlockViewModel
 import ru.open.oilstone.models.OpenViewModelFactory
@@ -17,26 +12,16 @@ import javax.inject.Inject
 
 
 @Title(R.string.title_family_card)
-class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
+class CardFragment : RecyclerFragment(), CardController.AdapterCallbacks {
 
     @Inject
     lateinit var viewModelFactory: OpenViewModelFactory
 
-    private val recycledViewPool = RecycledViewPool()
     private val controller = CardController(this)
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_card, container, false)
-    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.appComponent.inject(this)
-
-        recyclerView.recycledViewPool = recycledViewPool
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setHasFixedSize(true)
         recyclerView.adapter = controller.adapter
 
         CardBlockViewModel.create(this, viewModelFactory).card.observe(this, Observer {

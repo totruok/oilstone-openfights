@@ -24,6 +24,7 @@ class SubscriptionsController(private val callbacks: SubscriptionsController.Ada
                     val subscription = subscriptions[i]
                     callbacks.onSubscriptionClicked(subscription)
                 }
+                canceled(!subscriptions[i].active)
                 summary(context.getString(R.string.summary_n, MoneyUtils.moneyFormat("RUB", subscriptions[i].firstPayment)))
                 description(subscriptions[i].description)
             }

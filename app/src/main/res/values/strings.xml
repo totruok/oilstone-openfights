@@ -7,4 +7,6 @@
     <string name="title_family_card">Семейная карта</string>
     <string name="title_subscriptions">Подписки</string>
     <string name="summary_n">В месяц %1$s</string>
+    <string name="canceled_transaction">Операция отменена</string>
+    <string name="canceled_subscription">Подписка отменена</string>
 </resources>
