@@ -15,9 +15,9 @@ interface OpenRepository {
 
     fun getTransactions(cardId: Long): Single<List<Transaction>>
 
-    fun getSubscriptions(): LiveData<List<Subscription>>
+    fun getSubscriptions(cardId: Long): LiveData<List<Subscription>>
 
-    fun getSubscriptionDetail(): Single<SubscriptionDetail>
+    fun getSubscription(cardId: Long, subscriptionId: Long): LiveData<Subscription>
 
-    fun getSubscriptionSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse>
+    fun updateSubscription(cardId: Long, subscriptionId: Long, activeStatus: Boolean, maxCost: Double, comment: Comment?): LiveData<Subscription>
 }

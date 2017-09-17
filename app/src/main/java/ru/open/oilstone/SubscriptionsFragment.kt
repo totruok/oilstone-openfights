@@ -2,6 +2,7 @@ package ru.open.oilstone
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.View
 import editor.video.motion.fast.slow.core.annotations.Back
@@ -21,6 +22,7 @@ class SubscriptionsFragment : RecyclerFragment(), SubscriptionsController.Adapte
 
     @Inject
     lateinit var viewModelFactory: OpenViewModelFactory
+
     private val controller = SubscriptionsController(this)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -29,13 +31,33 @@ class SubscriptionsFragment : RecyclerFragment(), SubscriptionsController.Adapte
         controller.context = context.applicationContext
         recyclerView.adapter = controller.adapter
 
-        SubscriptionsViewModel.create(this, viewModelFactory).subscriptions.observe(this, Observer {
+        Log.e(TAG, "test")
+        val data = SubscriptionsViewModel.create(this, viewModelFactory)
+
+        data.setId(getCardId())
+        Log.e(TAG, "subscription")
+        data.subscriptions?.observe(this, Observer {
             Log.d(TAG, it.toString())
             controller.setData(it)
         })
     }
 
+    fun getCardId(): Long = arguments.getLong(KEY_CARD_ID)
+
     override fun onSubscriptionClicked(subscription: Subscription) {
         Log.d(TAG, subscription.name)
+        (activity as MainRouter).openSubscriptionDetail(getCardId(), subscription.id)
+    }
+
+    companion object {
+        val KEY_CARD_ID = "card_id"
+
+        fun newInstance(cardId: Long): Fragment {
+            val fragment = SubscriptionsFragment()
+            val bundle = Bundle()
+            bundle.putLong(KEY_CARD_ID, cardId)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

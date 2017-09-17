@@ -1,7 +1,8 @@
 package ru.open.oilstone
 
+
 interface MainRouter {
     fun openCard()
-    fun openSubscriptions()
-    fun openSubscriptionDetail(id: String)
+    fun openSubscriptions(cardId: Long) {}
+    fun openSubscriptionDetail(cardId: Long, subscriptionId: Long)
 }

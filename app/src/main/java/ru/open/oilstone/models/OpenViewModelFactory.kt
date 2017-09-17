@@ -17,6 +17,11 @@ class OpenViewModelFactory @Inject constructor(private val openRepository: OpenR
             @Suppress("UNCHECKED_CAST")
             return SubscriptionsViewModel(openRepository) as T
         }
+
+        if (modelClass.isAssignableFrom(SubscriptionViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return SubscriptionViewModel(openRepository) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
