@@ -22,6 +22,8 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
     var summary: String = ""
     @EpoxyAttribute
     var name: String = ""
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var clickListener: View.OnClickListener? = null
 
     override fun bind(holder: SubscriptionHolder) {
         super.bind(holder)
@@ -35,9 +37,17 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
         holder.date.text = date
         holder.description.text = description
         holder.summary.text = summary
+
+        holder.itemView.setOnClickListener(clickListener)
+    }
+
+    override fun unbind(holder: SubscriptionHolder) {
+        super.unbind(holder)
+        holder.itemView.setOnClickListener(null)
     }
 
     class SubscriptionHolder : EpoxyHolder() {
+        lateinit var itemView: View
         lateinit var avatar: ImageView
         lateinit var name: TextView
         lateinit var date: TextView
@@ -45,6 +55,7 @@ abstract class SubscriptionModelHolder : EpoxyModelWithHolder<SubscriptionModelH
         lateinit var summary: TextView
 
         override fun bindView(itemView: View) {
+            this.itemView = itemView
             avatar = itemView.findViewById(R.id.avatar)
             name = itemView.findViewById(R.id.name)
             date = itemView.findViewById(R.id.date)

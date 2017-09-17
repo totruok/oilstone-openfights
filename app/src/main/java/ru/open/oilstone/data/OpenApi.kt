@@ -18,8 +18,8 @@ interface OpenApi {
     @POST("/MyCards/1.0.0/MyCardsInfo/history")
     fun history(@Body body: Map<String, Long>): Single<TransactionResponse>
 
-    @GET("/MyCards/1.0.0/MySubscription/list")
-    fun subscriptions(): Single<SubscriptionsResponse>
+    @POST("/MySubscribtions/1.0.0/list")
+    fun subscriptions(@Body body: Map<String, Long>): Single<SubscriptionsResponse>
 
     @GET("/MyCards/1.0.0/MySubscription/details")
     fun subscriptionDetail(): Single<SubscriptionDetailResponse>
