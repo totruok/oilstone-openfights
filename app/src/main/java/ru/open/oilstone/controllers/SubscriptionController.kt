@@ -60,6 +60,30 @@ class SubscriptionController(private val callbacks: SubscriptionController.Adapt
             id(id++)
             textRes(R.string.title_recommend)
         }
+        if (subscription.recommendations != null) {
+            for (i in 0 until subscription.recommendations.size) {
+                titleModelHolder {
+                    id(id++)
+                    textString(subscription.recommendations[i].name)
+                }
+            }
+        }
+
+//        for (i in 0 until subscription.recommendations.size) {
+//            subscriptionModelHolder {
+//                id(id++)
+//                avatar(subscription.recommendations[i].logo ?: "")
+//                name(subscription.recommendations[i].name)
+////            clickListener { _, _, _, _ ->
+////                val subscription = subscription.recommendations[i][i]
+////                callbacks.onSubscriptionClicked(subscription)
+////            }
+//                canceled(!subscription.recommendations[i].active)
+//                summary(context.getString(R.string.summary_n, MoneyUtils.moneyFormat("RUB", subscription.recommendations[i].firstPayment)))
+//                description(subscription.recommendations[i].description)
+//                detail(false)
+//            }
+//        }
     }
 
 

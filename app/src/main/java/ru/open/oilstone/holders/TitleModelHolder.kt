@@ -12,10 +12,15 @@ import ru.open.oilstone.R
 abstract class TitleModelHolder : EpoxyModelWithHolder<TitleModelHolder.TitleHolder>() {
     @EpoxyAttribute
     var textRes: Int = 0
+    @EpoxyAttribute
+    var textString: String? = null
 
     override fun bind(holder: TitleHolder) {
         super.bind(holder)
         holder.title.text = holder.title.context.getString(textRes)
+        if (textString != null) {
+            holder.title.text = textString
+        }
     }
 
     override fun unbind(holder: TitleHolder) {
