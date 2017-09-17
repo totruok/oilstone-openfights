@@ -29,8 +29,8 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
 
     override fun getSubscriptions(): LiveData<List<Subscription>> {
         val data = MutableLiveData<List<Subscription>>()
-
-        openApi.subscriptions().map {
+        val body = mapOf("CardId" to CARD_ID)
+        openApi.subscriptions(body).map {
             it.subscriptions
         }
                 .subscribeOn(Schedulers.io())
@@ -44,7 +44,7 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
     }
 
     override fun getCard(): Single<Card> {
-        return Single.just(Card(7993583440908627, "Семейная карта", "visa", "debit"))
+        return Single.just(Card(CARD_ID, "Семейная карта", "visa", "debit"))
     }
 
     override fun getBalance(cardId: Long): Single<Balance> {
@@ -64,5 +64,9 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
 
     override fun getSubscriptionSetting(settings: SubscriptionSettings): Single<SubscriptionSettingsResponse> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    companion object {
+        val CARD_ID: Long = 9731875055002762
     }
 }

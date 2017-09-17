@@ -3,6 +3,7 @@ package ru.open.oilstone.di
 import android.app.Application
 import dagger.Component
 import ru.open.oilstone.CardFragment
+import ru.open.oilstone.SubscriptionsFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -10,6 +11,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(cardFragment: CardFragment)
+
+    fun inject(subscriptionsFragment: SubscriptionsFragment)
 
     companion object Factory {
         fun create(app: Application) = DaggerAppComponent.builder().
