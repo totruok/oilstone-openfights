@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/medium">
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@id/edit"
-        style="@style/Open.Text.Subscription.Name"
+    <Switch
+        android:id="@+id/switch_toggle"
         android:layout_width="match_parent"
-        android:layout_height="90dp" />
+        android:layout_height="wrap_content"
+        android:text="Активность подписки" />
 </LinearLayout>

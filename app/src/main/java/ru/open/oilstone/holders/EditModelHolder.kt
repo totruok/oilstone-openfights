@@ -10,7 +10,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import ru.open.oilstone.R
 
-@EpoxyModelClass(layout = R.layout.view_title)
+@EpoxyModelClass(layout = R.layout.view_edit)
 abstract class EditModelHolder : EpoxyModelWithHolder<EditModelHolder.TitleHolder>() {
 
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
