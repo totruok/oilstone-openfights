@@ -1,6 +1,5 @@
 package ru.open.oilstone.controllers
 
-import android.support.v7.widget.RecyclerView.RecycledViewPool
 import com.airbnb.epoxy.TypedEpoxyController
 import ru.open.oilstone.R
 import ru.open.oilstone.entities.MoneyUtils
@@ -9,7 +8,7 @@ import ru.open.oilstone.holders.cardModelHolder
 import ru.open.oilstone.holders.invoiceModelHolder
 import ru.open.oilstone.models.CardBlock
 
-class CardController(private val callbacks: CardController.AdapterCallbacks, private val recyclerViewPool: RecycledViewPool) : TypedEpoxyController<CardBlock>() {
+class CardController(private val callbacks: CardController.AdapterCallbacks) : TypedEpoxyController<CardBlock>() {
     interface AdapterCallbacks {
         fun onDepositClicked()
         fun onPurchasedClicked()

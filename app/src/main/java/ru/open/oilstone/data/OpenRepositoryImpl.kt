@@ -25,7 +25,23 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
                     it.printStackTrace()
                 })
         return data
-    };
+    }
+
+    override fun getSubscriptions(): LiveData<List<Subscription>> {
+        val data = MutableLiveData<List<Subscription>>()
+
+        openApi.subscriptions().map {
+            it.subscriptions
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data.value = it
+                }, {
+                    it.printStackTrace()
+                })
+        return data
+    }
 
     override fun getCard(): Single<Card> {
         return Single.just(Card(7993583440908627, "Семейная карта", "visa", "debit"))
@@ -41,9 +57,6 @@ class OpenRepositoryImpl(private val openApi: OpenApi) : OpenRepository {
         return openApi.history(body).map { it.cardTransactionsList }
     }
 
-    override fun getSubscriptions(): LiveData<List<Subscription>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun getSubscriptionDetail(): Single<SubscriptionDetail> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

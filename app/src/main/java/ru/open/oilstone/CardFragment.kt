@@ -23,7 +23,7 @@ class CardFragment : BaseFragment(), CardController.AdapterCallbacks {
     lateinit var viewModelFactory: OpenViewModelFactory
 
     private val recycledViewPool = RecycledViewPool()
-    private val controller = CardController(this, recycledViewPool)
+    private val controller = CardController(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
