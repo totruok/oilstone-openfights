@@ -14,6 +14,7 @@ class SubscriptionController(private val callbacks: SubscriptionController.Adapt
         fun onToggleActive(subscriptions: Subscription, active: Boolean)
         fun onSendMessage(subscriptions: Subscription, message: String)
         fun onChangeLimit(subscriptions: Subscription, maxPrice: Double)
+        fun onClickUrl(url: String)
     }
 
     override fun buildModels(subscription: Subscription) {
@@ -29,6 +30,13 @@ class SubscriptionController(private val callbacks: SubscriptionController.Adapt
             rating(context.getString(R.string.rating_n, subscription.stars.toString()))
             totalSummary(context.getString(R.string.summary_total_n, MoneyUtils.moneyFormat("RUB", subscription.totalPayed)))
         }
+        toggleModelHolder {
+            id(id++)
+            active(!subscription.active)
+            onCheckedListener { buttonView, isChecked ->
+                callbacks.onToggleActive(subscription, isChecked)
+            }
+        }
         titleModelHolder {
             id(id++)
             textRes(R.string.title_comments)
@@ -38,13 +46,6 @@ class SubscriptionController(private val callbacks: SubscriptionController.Adapt
                 id(id++)
                 name(subscription.comments[i].user)
                 text(subscription.comments[i].text)
-            }
-        }
-        toggleModelHolder {
-            id(id++)
-            active(!subscription.active)
-            onCheckedListener { buttonView, isChecked ->
-                callbacks.onToggleActive(subscription, isChecked)
             }
         }
         editModelHolder {
@@ -60,6 +61,35 @@ class SubscriptionController(private val callbacks: SubscriptionController.Adapt
             id(id++)
             textRes(R.string.title_recommend)
         }
+        if (subscription.recommendations != null) {
+            for (i in 0 until subscription.recommendations.size) {
+                recomendModelHolder {
+                    id(id++)
+                    logo(subscription.recommendations[i].logo!!)
+                    name(subscription.recommendations[i].name)
+                    description(subscription.recommendations[i].description)
+                    clickListener { model, parentView, clickedView, position ->
+                        callbacks.onClickUrl(subscription.recommendations[i].url!!)
+                    }
+                }
+            }
+        }
+
+//        for (i in 0 until subscription.recommendations.size) {
+//            subscriptionModelHolder {
+//                id(id++)
+//                avatar(subscription.recommendations[i].logo ?: "")
+//                name(subscription.recommendations[i].name)
+////            clickListener { _, _, _, _ ->
+////                val subscription = subscription.recommendations[i][i]
+////                callbacks.onSubscriptionClicked(subscription)
+////            }
+//                canceled(!subscription.recommendations[i].active)
+//                summary(context.getString(R.string.summary_n, MoneyUtils.moneyFormat("RUB", subscription.recommendations[i].firstPayment)))
+//                description(subscription.recommendations[i].description)
+//                detail(false)
+//            }
+//        }
     }
 
 

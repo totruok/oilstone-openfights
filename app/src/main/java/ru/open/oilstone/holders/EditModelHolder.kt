@@ -1,6 +1,5 @@
 package ru.open.oilstone.holders
 
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
@@ -25,9 +24,9 @@ abstract class EditModelHolder : EpoxyModelWithHolder<EditModelHolder.TitleHolde
     override fun bind(holder: TitleHolder) {
         super.bind(holder)
         holder.edit.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_NULL
-                    && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 submitListener?.onSumbit(holder.edit.text.toString())
+                holder.edit.setText("")
             }
             true
         }

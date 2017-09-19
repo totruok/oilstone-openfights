@@ -22,12 +22,14 @@ abstract class ToggleModelHolder : EpoxyModelWithHolder<ToggleModelHolder.Contro
     override fun bind(holder: ControlHolder) {
         super.bind(holder)
 
-        holder.switch.isChecked = active
+        holder.switch.setOnCheckedChangeListener(null)
+        holder.switch.isChecked = !active
         holder.switch.setOnCheckedChangeListener(onCheckedListener)
     }
 
     override fun unbind(holder: ControlHolder) {
         super.unbind(holder)
+        holder.switch.setOnCheckedChangeListener(null)
     }
 
     class ControlHolder : EpoxyHolder() {

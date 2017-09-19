@@ -7,14 +7,14 @@ data class Subscription(
         @SerializedName("first_payment") val firstPayment: Double,
         @SerializedName("max_cost") val maxCost: Double,
         @SerializedName("cost") val cost: String? = null,
-        @SerializedName("comments") val comments: List<Comment> = emptyList(),
+        @SerializedName("comments") var comments: MutableList<Comment> = mutableListOf(),
         @SerializedName("name") val name: String = "",
         @SerializedName("description") val description: String = "",
         @SerializedName("logo") val logo: String?,
         @SerializedName("payment_days") val paymentDays: List<Int> = emptyList(),
-        @SerializedName("recommendations") val recommendations: List<Recommendation> = emptyList(),
+        @SerializedName("recomendations") val recommendations: List<Recommendation>? = emptyList(),
         @SerializedName("stars") val stars: Int?,
-        @SerializedName("active") val active: Boolean,
+        @SerializedName("active") var active: Boolean,
         @SerializedName("total_payed") val totalPayed: Double
 
 )

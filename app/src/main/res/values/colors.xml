@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/seagull</color>
     <color name="colorPrimaryDark">#497578</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#1FBBE3</color>
 
     <color name="seagull">#78C1CA</color>
     <color name="shakespeare">#65A9C0</color>

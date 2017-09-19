@@ -1,6 +1,8 @@
 package ru.open.oilstone
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -14,6 +16,7 @@ import ru.open.oilstone.entities.Subscription
 import ru.open.oilstone.models.OpenViewModelFactory
 import ru.open.oilstone.models.SubscriptionViewModel
 import javax.inject.Inject
+
 
 @Back
 @Title(R.string.title_subscription)
@@ -43,37 +46,46 @@ class SubscriptionDetailFragment : RecyclerFragment(), SubscriptionController.Ad
     }
 
     override fun onToggleActive(subscriptions: Subscription, active: Boolean) {
-        val data = SubscriptionViewModel.create(this, viewModelFactory)
+        //val data = SubscriptionViewModel.create(this, viewModelFactory)
+        subscriptions.active = active
+        controller.setData(subscriptions)
 
-        data.setIds(getCardId(), getSubscriptionId())
-        data.setUpdate(active, subscriptions.maxCost, null)
-                .observe(this, Observer {
-                    Log.d(TAG, it.toString())
-                    controller.setData(it)
-                })
+//        data.setIds(getCardId(), getSubscriptionId())
+//        data.setUpdate(active, subscriptions.maxCost, null)
+//                .observe(this, Observer {
+//                    Log.d(TAG, it.toString())
+//                    controller.setData(it)
+//                })
+    }
+
+    override fun onClickUrl(url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse(url))
+        startActivity(browserIntent)
     }
 
     override fun onSendMessage(subscriptions: Subscription, message: String) {
-        val data = SubscriptionViewModel.create(this, viewModelFactory)
-
-        data.setIds(getCardId(), getSubscriptionId())
-        data.setUpdate(subscriptions.active, subscriptions.maxCost, Comment(message, "Никита"))
-                .observe(this, Observer {
-                    Log.d(TAG, it.toString())
-                    controller.setData(it)
-                })
+        //val data = SubscriptionViewModel.create(this, viewModelFactory)
+        subscriptions.comments.add(Comment(message, "Alexey"))
+        controller.setData(subscriptions)
+//        data.setIds(getCardId(), getSubscriptionId())
+//        data.setUpdate(subscriptions.active, subscriptions.maxCost, Comment(message, "Никита"))
+//                .observe(this, Observer {
+//                    Log.d(TAG, it.toString())
+//                    controller.setData(it)
+//                })
     }
 
     override fun onChangeLimit(subscriptions: Subscription, maxPrice: Double) {
-        val data = SubscriptionViewModel.create(this, viewModelFactory)
+        //val data = SubscriptionViewModel.create(this, viewModelFactory)
 
 
-        data.setIds(getCardId(), getSubscriptionId())
-        data.setUpdate(subscriptions.active, maxPrice, null)
-                .observe(this, Observer {
-                    Log.d(TAG, it.toString())
-                    controller.setData(it)
-                })
+//        data.setIds(getCardId(), getSubscriptionId())
+//        data.setUpdate(subscriptions.active, maxPrice, null)
+//                .observe(this, Observer {
+//                    Log.d(TAG, it.toString())
+//                    controller.setData(it)
+//                })
     }
 
     fun getCardId(): Long = arguments.getLong(SubscriptionsFragment.KEY_CARD_ID)
